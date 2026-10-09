@@ -406,7 +406,7 @@
     GETVEC_SEG      0        ; then get segment
     PUSH  FLAGS
     PUSH  CS
-    PUSH  IP_AFTER           ; for both 8086/80186, IP_AFTER is pushed. 80286 pushes IP_THIS
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
     .end
 
@@ -420,7 +420,7 @@
     GETVEC_SEG      0        ; then get segment
     PUSH  FLAGS
     PUSH  CS
-    PUSH  IP_AFTER           
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
     .end
 
@@ -434,7 +434,7 @@
     GETVEC_SEG      0        ; then get segment
     PUSH  FLAGS
     PUSH  CS
-    PUSH  IP_AFTER           
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
     .end
 
@@ -448,7 +448,7 @@
     GETVEC_SEG      0        ; then get segment
     PUSH  FLAGS
     PUSH  CS
-    PUSH  IP_AFTER
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
     .end
 
@@ -481,7 +481,7 @@
     GETVEC_SEG      0        ; then get segment
     PUSH  FLAGS
     PUSH  CS
-    PUSH  IP_AFTER           
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
     .end
 
@@ -535,7 +535,7 @@
     GETVEC_OFF 5             ; vector 5  (bound-range exceeded)
     GETVEC_SEG 5
     PUSH     CS
-    PUSH     IP_AFTER
+    PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR   0
     .end
 
