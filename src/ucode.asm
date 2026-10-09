@@ -530,10 +530,11 @@
     LOAD   0                 ; lower bound  → tmp_lo
     LOAD   1                 ; upper bound  → tmp_hi
     IN_RANGE                 ; sets cond = (tmp_lo <= Gv <= tmp_hi)
-    JT     5                 ; in range → .end
+    JT     6                 ; in range → .end
 ; --- fault path ---------------------------------------------------
     GETVEC_OFF 5             ; vector 5  (bound-range exceeded)
     GETVEC_SEG 5
+    PUSH     FLAGS
     PUSH     CS
     PUSH     IP_AFTER
     BR_FAR   0
