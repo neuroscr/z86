@@ -402,9 +402,9 @@
     JT       1              ;
     .end
 ; trigger INT0 on overflow
+    PUSH  FLAGS              ; before GETVEC, which clears IF and TF
     GETVEC_OFF      0        ; vector 0, division trap
     GETVEC_SEG      0        ; then get segment
-    PUSH  FLAGS
     PUSH  CS
     PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
@@ -416,9 +416,9 @@
     JT       1              ;
     .end
 ; trigger INT0 on overflow
+    PUSH  FLAGS              ; before GETVEC, which clears IF and TF
     GETVEC_OFF      0        ; vector 0, division trap
     GETVEC_SEG      0        ; then get segment
-    PUSH  FLAGS
     PUSH  CS
     PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
@@ -430,9 +430,9 @@
     JT       1              ;
     .end
 ; trigger INT0 on overflow
+    PUSH  FLAGS              ; before GETVEC, which clears IF and TF
     GETVEC_OFF      0        ; vector 0, division trap
     GETVEC_SEG      0        ; then get segment
-    PUSH  FLAGS
     PUSH  CS
     PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
@@ -444,9 +444,9 @@
     JT       1              ;
     .end
 ; trigger INT0 on overflow
+    PUSH  FLAGS              ; before GETVEC, which clears IF and TF
     GETVEC_OFF      0        ; vector 0, division trap
     GETVEC_SEG      0        ; then get segment
-    PUSH  FLAGS
     PUSH  CS
     PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
@@ -477,9 +477,9 @@
     ADJ       4 
     JT       1              ; ADJ sets cond if divide-by-0
     .end
+    PUSH  FLAGS              ; before GETVEC, which clears IF and TF
     GETVEC_OFF      0        ; vector 0, division trap
     GETVEC_SEG      0        ; then get segment
-    PUSH  FLAGS
     PUSH  CS
     PUSH  IP_THIS            ; 80286 faults push the FAULTING IP (8086/80186 pushed IP_AFTER)
     BR_FAR     0             ; cs:ip ← tmp_hi:tmp_lo
